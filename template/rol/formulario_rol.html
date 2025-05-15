@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<h2>{% if form.instance.pk %}Editar Rol{% else %}Nuevo Rol{% endif %}</h2>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-success">Guardar</button>
+  <a href="{% url 'rol:lista' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<h2>Lista de Roles</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Empleado</th>
+      <th>Año/Mes</th>
+      <th>Bonificación</th>
+      <th>Horas Extras</th>
+      <th>Deducciones (IESS)</th>
+      <th>Pago Total Neto</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rol in roles %}
+    <tr>
+      <td>{{ rol.empleado }}</td>
+      <td>{{ rol.aniomes }}</td>
+      <td>{{ rol.bono }}</td>
+      <td>{{ rol.horas_extra }}</td>
+      <td>{{ rol.iess }}</td>
+      <td>{{ rol.neto }}</td>
+      <td>
+        <a href="{% url 'rol:editar' rol.id %}" class="btn btn-warning btn-sm">Editar</a>
+        <a href="{% url 'rol:eliminar' rol.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="7">No hay roles registrados.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{% url 'rol:nuevo' %}" class="btn btn-primary">Nuevo Rol</a>
+{% endblock %}
