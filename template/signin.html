@@ -1,0 +1,27 @@
+{% extends "home.html" %}
+
+{% block extra_css %}
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="page-header">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="fa-solid fa-user-plus me-2"></i>Inicia Sesión
+        </h1>
+    </header>
+
+    <div class="card mb-4">
+        <div class="card-body">
+
+{{error}}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Iniciar
+    </button>
+</form>
+
+{% endblock %}

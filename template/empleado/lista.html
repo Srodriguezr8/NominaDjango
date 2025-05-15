@@ -1,0 +1,41 @@
+{% extends "home.html" %}
+{% block title %}Lista de Empleados{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="page-header">
+        <h1 class="display-5 fw-bold text-primary">
+            <i class="fas fa-users me-2"></i>Empleados
+        </h1>
+        <p class="lead text-muted">Listado de empleados registrados</p>
+    </header>
+
+    <div class="mb-3">
+        <a href="{% url 'empleado:crear_empleado' %}" class="btn btn-primary">
+            <i class="fas fa-plus me-2"></i>Nuevo Empleado
+        </a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                {% for empleado in empleados %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ empleado }}
+                    <div>
+                        <a href="{% url 'empleado:editar_empleado' empleado.pk %}" class="btn btn-sm btn-primary me-2">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <a href="{% url 'empleado:eliminar_empleado' empleado.pk %}" class="btn btn-sm btn-danger">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </a>
+                    </div>
+                </li>
+                {% empty %}
+                <li class="list-group-item text-muted">No hay empleados registrados.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
